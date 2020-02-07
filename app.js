@@ -1,0 +1,84 @@
+var express     = require("express"),
+    app         = express(),
+    bodyParser  = require("body-parser"),
+    mongoose    = require("mongoose");
+    Campground  = require("./models/campGround");
+    // Comment     = require("./models/comment");
+    seedDB      = require("./seeds");
+
+seedDB();
+mongoose.connect("mongodb://localhost:27017/yelp_camp", {useUnifiedTopology: true, useNewUrlParser: true});
+app.use(bodyParser.urlencoded({extended: true}));
+app.set("view engine", "ejs");
+
+// Campground.create({
+//     name: "Granite Hill", 
+//     image: "https://cdn.pixabay.com/photo/2016/01/19/16/48/teepee-1149402__340.jpg",
+//     description: "This is a huge granite hill, no bathrooms, no water. Beautiful granite!"
+// }, function(err, campground){
+//     if(err){
+//         console.log(err);
+//     } else {
+//         console.log("New campground added!");
+//         console.log(campground.toString());
+//     }
+// });
+
+
+app.get("/", function(req, res){
+    res.render("landing");
+});
+
+//INDEX - show all campgrounds
+app.get("/campgrounds", function(req, res){
+    //Get all campgrounds from DB
+    Campground.find({}, function(err, allCampgrounds){
+        if(err){
+            console.log(err);
+        } else {
+            res.render("index", {campgrounds: allCampgrounds});
+        }
+    });
+});
+
+//New - show form to create a new campground
+app.get("/campgrounds/new", function(req, res){
+    res.render("new");
+});
+
+//CREATE - adds new campgrounds to database
+app.post("/campgrounds", function(req, res){
+    //get data from form
+    var name = req.body.name;
+    var image = req.body.image;
+    var description = req.body.description;
+    var newCampground = {name: name, image: image, description: description};
+    //Create new campground and save to the db
+    Campground.create(newCampground, function(err, newlyCreated){
+        if(err){
+            console.log(err);
+        } else {
+            console.log(newlyCreated.toString());
+        }
+    });
+    //redirect back to campgrounds page
+    res.redirect("/campgrounds");
+});
+
+//SHOW - shows more info about one campground
+app.get("/campgrounds/:id", function(req, res){
+    //find the campground with provided ID
+    Campground.findById(req.params.id, function(err, foundCampground){
+        if(err){
+            console.log(err);
+        } else {
+            //render show template with that campground
+            res.render("show", {campground: foundCampground});
+        }
+    });
+
+});
+
+app.listen(3000, function(){
+    console.log("YelpCamp server has started on port 3000!");
+});
