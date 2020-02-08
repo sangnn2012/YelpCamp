@@ -68,16 +68,26 @@ app.post("/campgrounds", function(req, res){
 //SHOW - shows more info about one campground
 app.get("/campgrounds/:id", function(req, res){
     //find the campground with provided ID
-    Campground.findById(req.params.id, function(err, foundCampground){
+    Campground.findById(req.params.id).populate("comments").exec(function(err, foundCampground){
         if(err){
             console.log(err);
         } else {
+            console.log(foundCampground);
             //render show template with that campground
             res.render("show", {campground: foundCampground});
         }
     });
 
 });
+
+// ========================
+// COMMENTS ROUTES
+// ========================
+
+app.get("/campgrounds/:id/comments/new", function(req, res){
+    res.send("THIS WILL BE THE COMMENT");
+});
+
 
 app.listen(3000, function(){
     console.log("YelpCamp server has started on port 3000!");
