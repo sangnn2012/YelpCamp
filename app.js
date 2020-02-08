@@ -6,11 +6,14 @@ var express     = require("express"),
     Comment     = require("./models/comment");
     seedDB      = require("./seeds");
 
-seedDB();
+
 mongoose.connect("mongodb://localhost:27017/yelp_camp", {useUnifiedTopology: true, useNewUrlParser: true});
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
 
+app.use(express.static(__dirname + "/public"));
+
+seedDB();
 // Campground.create({
 //     name: "Granite Hill", 
 //     image: "https://cdn.pixabay.com/photo/2016/01/19/16/48/teepee-1149402__340.jpg",
