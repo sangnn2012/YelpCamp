@@ -62,7 +62,11 @@ router.get("/:id", function(req, res){
 // EDIT campground route
 router.get("/:id/edit", middleware.checkCampgroundOwnership, function(req, res){
     Campground.findById(req.params.id, function(err, foundCampground){
-        res.render("campgrounds/edit", {campground: foundCampground});
+        if(err){
+            req.flash("error", "You are trying to update a campground that doesn't exist");
+        } else {
+            res.render("campgrounds/edit", {campground: foundCampground});
+        }
     });
 });
 
