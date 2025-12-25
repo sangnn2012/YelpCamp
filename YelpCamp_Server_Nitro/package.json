@@ -1,0 +1,34 @@
+{
+  "name": "yelpcamp-server-nitro",
+  "version": "1.0.0",
+  "description": "YelpCamp API server built with standalone Nitro",
+  "type": "module",
+  "scripts": {
+    "dev": "nitro dev",
+    "build": "nitro build",
+    "preview": "node .output/server/index.mjs",
+    "db:generate": "drizzle-kit generate",
+    "db:push": "drizzle-kit push",
+    "db:studio": "drizzle-kit studio",
+    "db:seed": "npx tsx db/seed.ts"
+  },
+  "keywords": ["nitro", "api", "campgrounds"],
+  "license": "ISC",
+  "dependencies": {
+    "@trpc/server": "^10.45.0",
+    "better-auth": "^1.2.0",
+    "drizzle-orm": "^0.41.0",
+    "h3": "^1.15.3",
+    "nitropack": "^2.11.12",
+    "postgres": "^3.4.5",
+    "superjson": "^2.2.1",
+    "zod": "^3.24.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "dotenv": "^16.4.0",
+    "drizzle-kit": "^0.31.4",
+    "tsx": "^4.19.0",
+    "typescript": "^5.9.3"
+  }
+}
