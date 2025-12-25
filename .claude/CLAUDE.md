@@ -2,6 +2,24 @@
 
 > For project overview and philosophy, see `../README.md`
 
+## User Preferences
+
+### Git Commit Style
+- **Atomic commits**: One logical change per commit
+- **Conventional Commits format**:
+  ```
+  <type>(<scope>): <description>
+
+  [optional body]
+
+  🤖 Generated with [Claude Code](https://claude.com/claude-code)
+
+  Co-Authored-By: Claude Opus 4.5 <noreply@anthropic.com>
+  ```
+- **Types**: `feat`, `fix`, `docs`, `chore`, `refactor`, `test`, `style`
+- **Scopes**: `ui`, `api`, `server`, `docs`, or module name
+- **Default branch**: `master` (not `main`)
+
 ## Architecture
 
 ```
