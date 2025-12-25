@@ -57,7 +57,7 @@ func main() {
 		r.Post("/register", authHandler.Register)
 		r.Post("/login", authHandler.Login)
 		r.Post("/logout", authHandler.Logout)
-		r.Get("/me", mw.RequireAuth(authHandler.Me))
+		r.With(mw.RequireAuth).Get("/me", authHandler.Me)
 	})
 
 	// Campground routes
