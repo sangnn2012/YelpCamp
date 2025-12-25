@@ -28,7 +28,7 @@
 ├─────────────────────────────────────────────────────────────────┤
 │                                                                  │
 │   ┌─────────────┐   ┌─────────────┐   ┌─────────────┐          │
-│   │   UI_Nuxt4  │   │  UI_React   │   │  UI_Svelte  │   ...    │
+│   │   UI_Nuxt4  │   │   UI_Vue3   │   │  UI_React   │   ...    │
 │   └──────┬──────┘   └──────┬──────┘   └──────┬──────┘          │
 │          │                 │                 │                   │
 │          └────────────┬────┴────────────────┘                   │
@@ -38,7 +38,7 @@
 │               └───────┬───────┘                                 │
 │                       │                                          │
 │   ┌─────────────┐   ┌─┴───────────┐   ┌─────────────┐          │
-│   │  API_Hono   │   │Server_Nitro │   │ API_Express │   ...    │
+│   │  API_Hono   │   │   API_Go    │   │Server_Nitro │   ...    │
 │   └─────────────┘   └─────────────┘   └─────────────┘          │
 │                                                                  │
 └─────────────────────────────────────────────────────────────────┘
@@ -49,7 +49,9 @@
 | Module | Type | Framework | Port | Status |
 |--------|------|-----------|------|--------|
 | YelpCamp_UI_Nuxt4 | UI | Nuxt 4 + Vue 3 | 3000 | Active |
+| YelpCamp_UI_Vue3 | UI | Vue 3 + Vite | 3003 | Active |
 | YelpCamp_API_Hono | API | Hono + Bun | 3001 | Active |
+| YelpCamp_API_Go | API | Go + Chi | 3004 | Active |
 | YelpCamp_Server_Nitro | Server | Nitro (standalone) | 3002 | Active |
 
 ## Naming Convention
@@ -93,6 +95,10 @@ Types:
 ## Quick Commands
 
 ```bash
+# Nuxt UI (port 3000)
+cd YelpCamp_UI_Nuxt4
+npm install && npm run dev
+
 # Hono API (port 3001)
 cd YelpCamp_API_Hono
 bun install && bun run db:push && bun run db:seed && bun run dev
@@ -101,9 +107,13 @@ bun install && bun run db:push && bun run db:seed && bun run dev
 cd YelpCamp_Server_Nitro
 npm install && npm run db:push && npm run db:seed && npm run dev
 
-# Nuxt UI (port 3000)
-cd YelpCamp_UI_Nuxt4
-npm install && npm run dev
+# Vue 3 UI (port 3003)
+cd YelpCamp_UI_Vue3
+pnpm install && pnpm dev
+
+# Go API (port 3004)
+cd YelpCamp_API_Go
+go mod tidy && go run cmd/server/main.go
 ```
 
 ## SPECS.md Reference
@@ -128,5 +138,7 @@ npm install && npm run dev
 ## Module Documentation Links
 
 - [YelpCamp_UI_Nuxt4/.claude/CLAUDE.md](../YelpCamp_UI_Nuxt4/.claude/CLAUDE.md)
+- [YelpCamp_UI_Vue3/.claude/CLAUDE.md](../YelpCamp_UI_Vue3/.claude/CLAUDE.md)
 - [YelpCamp_API_Hono/.claude/CLAUDE.md](../YelpCamp_API_Hono/.claude/CLAUDE.md)
+- [YelpCamp_API_Go/.claude/CLAUDE.md](../YelpCamp_API_Go/.claude/CLAUDE.md)
 - [YelpCamp_Server_Nitro/.claude/CLAUDE.md](../YelpCamp_Server_Nitro/.claude/CLAUDE.md)
